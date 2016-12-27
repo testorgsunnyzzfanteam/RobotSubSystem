@@ -12,8 +12,8 @@ Robot::Robot(Axis axis_x , Axis axis_y , double r, double w)
 	Weight = w;
 }
 
-void Robot::Display()   
+void Robot::Display()   //´íÎó
 {
-	printf("The location of the Robot Hand is ( %f  , %f )\n", Axis_X.Parameter.Position, Axis_Y.Parameter.Position);
+	printf("The location of the Robot Hand is ( %d  , %d )", Axis_X.Parameter.Position, Axis_X.Parameter.Position);
 
 }

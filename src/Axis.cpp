@@ -3,18 +3,10 @@
 #include <stdio.h>
 #include <math.h>
 
-
-#include <signal.h>
-#include <unistd.h>
-#include <sys/mman.h>
-#include <native/task.h>
-#include <native/timer.h>
-
-
 Axis::Axis()
 {
 	State = {false ,false };
-	Parameter = { 0, 0, 0, 0 ,0};
+	Parameter = { 0, 0, 0, 0 };
 	New_Cmd = { 0, 0, 0 };
 }
 
@@ -57,7 +49,6 @@ new_cmd Axis::Get_new_cmd()
 
 void  Axis::take_order()
 {
-       
 	double Acceleration_time;
 	double Uniform_motion_time;
 	double ActualAccelerration;
@@ -76,83 +67,6 @@ void  Axis::take_order()
 		printf("ActualAccelerration : %f \n", ActualAccelerration);
 		printf("Acceleration_time : %f \n", Acceleration_time);
 		printf("Uniform_motion_time : %f \n", Uniform_motion_time);
-
-   
-                int t = 0;
-                double Speed_new;
-                double S_new;
-           
-                while(State.Request)
-                {      
-                                                
-                     while (Acceleration_time - (t/1000.0) + 0.0006 > 0.0005)
-
-			{
-				Speed_new = (t/1000.0)*ActualAccelerration;
-				S_new = 0.5*ActualAccelerration*(t/1000.0)*(t/1000.0);
-				/*
-			        RTIME now, previous;
-
-			        rt_task_set_periodic(NULL, TM_NOW, 1000000000);
-			        previous = rt_timer_read();
-
-				   axis1_setpoint.Position = 0;
-				   axis1_setpoint.Velocity = 0;
-
-				    int temp;                               
-                    while (1) {
-					rt_task_wait_period(NULL);
-					now = rt_timer_read();
-					printf("Task A Time since last turn: %ld.%06ld ms\n",
-					       (long)(now - previous) / 1000000,
-					       (long)(now - previous) % 1000000);
-					       previous = now;
-		                      }
-                                 */
-                                
-				printf("when t= %f ms,v= %f mm/s,s= %fmm\n", (t/1000.0), Speed_new, S_new);		      
-				t++;
-
-			}
-
-
-			double s = S_new;
-
-			while ( (Acceleration_time + Uniform_motion_time) - (t/1000.0) + 0.0006 > 0.0005)
-			{
-				Speed_new = Speed_new;
-				S_new = s + Speed_new*((t/1000.0) - Acceleration_time);
-
-                              	/*
-			        RTIME now, previous;
-
-			        rt_task_set_periodic(NULL, TM_NOW, 1000000000);
-			        previous = rt_timer_read();
-
-				axis1_setpoint.Position = 0;
-				axis1_setpoint.Velocity = 0;
-
-				int temp;                               
-                while (1) {
-				rt_task_wait_period(NULL);
-				now = rt_timer_read();
-				printf("Task A Time since last turn: %ld.%06ld ms\n",
-					       (long)(now - previous) / 1000000,
-					       (long)(now - previous) % 1000000);
-					       previous = now;
-		                      }
-                                 */
-                                
-				printf("when t= %f ms,v= %f mm/s,s= %fmm\n", (t/1000.0), Speed_new, S_new);
-				t++;
-			}
-
-			State.Request = false;
-			State.Done = true;
-            Parameter.Position = New_Cmd.Position;
-			
-                }
-
 		
 		/*
 		while (State.Request)
