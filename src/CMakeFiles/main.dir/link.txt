@@ -1,0 +1,1 @@
+/usr/bin/c++   -D_GNU_SOURCE -D_REENTRANT -D__XENO__  -Xlinker -rpath -Xlinker /usr/xenomai/lib  CMakeFiles/main.dir/main.cpp.o CMakeFiles/main.dir/Axis.cpp.o CMakeFiles/main.dir/Robot.cpp.o  -o main  -L/usr/xenomai/lib -rdynamic -lnative -lxenomai -lpthread -lrt -Wl,-rpath,/usr/xenomai/lib 
