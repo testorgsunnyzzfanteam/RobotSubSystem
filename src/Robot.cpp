@@ -1,3 +1,4 @@
+#include"stdafx.h"
 #include "Robot.h"
 #include <stdio.h>
 

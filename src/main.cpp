@@ -1,8 +1,9 @@
+#include"stdafx.h"
 #include <iostream>
 #include "Axis.h"
 #include "Robot.h"
 using namespace std;
-int main()
+int _tmain(int argc, _TCHAR* argv[])
 {
 	Axis_state state_init;
 	state_init = { true, false };

@@ -1,3 +1,4 @@
+#include"stdafx.h"
 #include "Axis.h"
 #include <stdio.h>
 #include <math.h>
